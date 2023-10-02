@@ -1,0 +1,4 @@
+AOC : 66000 ft 15db
+SAMSUNG : 449989 ft 15db
+LG : 56000 ft 15db
+SAMSUNG : 91000 ft 15db

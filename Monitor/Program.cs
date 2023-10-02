@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+
 
 namespace Monitor
 {
@@ -14,12 +16,11 @@ namespace Monitor
             foreach (var x in monitorok)
             {
                 ossz += x.brutto(x.ara, x.afa) * 15;
-                
             }
             return ossz;
 
-
         }
+        
         static void Main(string[] args)
         {
             var monitorok = new List<Vasar>();
@@ -35,20 +36,64 @@ namespace Monitor
             }
             foreach (var x in monitorok)
             {
-                Console.WriteLine($"f1 gyárstó: {x.gyartoja}, típus: {x.tipusa} méret: {x.merete} nettó ár: {(x.ara/(x.afa/100))}");
+                Console.WriteLine($"{x.gyartoja}, típus: {x.tipusa} méret: {x.merete} nettó ár: {(x.ara/(x.afa/100))}");
             }
-            
             Console.WriteLine();
             foreach (var x in monitorok)
             {
-                Console.WriteLine(bruttoraktar());
+                Console.WriteLine($"brutto ara {x.gyartoja} : {Math.Round(x.brutto(x.ara, x.afa))}ft");
+
+                
+
+                Console.WriteLine();
+               
             }
 
+            
+            Console.WriteLine($"raktarertek: {Math.Round(bruttoraktar(monitorok))} ft");
+            Console.WriteLine();
+            var filePath = @"..\..\..\src\WriteFile.txt";
+            using (StreamWriter outputFile = new StreamWriter(filePath))
+
+                
+
+                
+
+                foreach (var x in monitorok)
+                {
+                    if (x.ara > 50000)
+                    {
+                        {
+                            outputFile.WriteLine($"{x.gyartoja.ToUpper()} : {x.ara} ft {x.darab(15)}db");
+                            Console.WriteLine($"{x.gyartoja.ToUpper()} : {x.ara} ft {x.darab(15)}db");
+                        }
+                    }
+                }
+
+            Console.WriteLine();
+
+            foreach (var x in monitorok)
+            {
+                if (x.gyartoja == "hp")
+                {
+                    Console.WriteLine(x.db);
+                }
+                else
+                {
+                
+                    var ize = monitorok.Max(m => m.ara);
+                    Console.WriteLine($"{x.gyartoja}");
+                }
+            }
+            
+           
 
 
 
 
             Console.ReadLine();
+            
+            
 
 
         }

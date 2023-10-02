@@ -16,6 +16,7 @@ namespace Monitor
         public double ara { get; set; }
         public string gamer { get; set; }
         public double afa { get;}
+        public int db { get; set; }
 
 
         public double brutto(double ara, double afa)
@@ -23,7 +24,11 @@ namespace Monitor
             return (ara / afa) * 100;
         }
 
-
+        public double darab(int db)
+        {
+            db = 15;
+            return db ;
+        }
 
 
         public Vasar(string sor)
@@ -33,6 +38,7 @@ namespace Monitor
             this.tipusa = r[1];
             this.merete = double.Parse(r[2]);
             this.ara = double.Parse(r[3]);
+           
             if (r.Length == 4)
             {
                 this.gamer = "gamer";
